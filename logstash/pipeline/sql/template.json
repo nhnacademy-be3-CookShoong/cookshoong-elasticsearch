@@ -15,7 +15,10 @@
         "filter": {
           "my_synonym_filter": {
             "type": "synonym",
-            "synonyms_path": "/usr/share/logstash/sql/synonym.txt"
+            "synonyms": [
+              "바나나, 먹다",
+              "피자, 파이"
+            ]
           }
         },
         "analyzer": {
