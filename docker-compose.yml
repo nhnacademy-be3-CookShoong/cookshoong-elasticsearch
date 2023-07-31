@@ -52,6 +52,8 @@ services:
   init:
     image: appropriate/curl:latest
     command: ["-X", "DELETE", "elasticsearch:9200/store"]
+    networks:
+      - mysql-elk
     depends_on:
       - elasticsearch
 
