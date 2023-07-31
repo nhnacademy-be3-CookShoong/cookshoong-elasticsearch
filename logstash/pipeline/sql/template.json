@@ -1,7 +1,4 @@
 {
-  "index_patterns": [
-    "store*"
-  ],
   "settings": {
     "index": {
       "analysis": {
@@ -16,8 +13,15 @@
           "my_synonym_filter": {
             "type": "synonym",
             "synonyms": [
-              "피자, 핏짜, 휫짜, pizza, 알볼로"
+              "피자, 핏짜",
+              "피자, 외국부침개"
             ]
+          },
+          "nori_readingform": {
+            "type": "nori_readingform"
+          },
+          "nori_part_of_speech": {
+            "type": "nori_part_of_speech"
           }
         },
         "analyzer": {
@@ -25,9 +29,9 @@
             "filter": [
               "lowercase",
               "trim",
+              "my_synonym_filter",
               "nori_readingform",
-              "nori_part_of_speech",
-              "my_synonym_filter"
+              "nori_part_of_speech"
             ],
             "tokenizer": "my_nori_tokenizer"
           }
