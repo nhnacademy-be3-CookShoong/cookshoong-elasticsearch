@@ -49,6 +49,12 @@ services:
     networks:
       - mysql-elk
 
+  init:
+    image: appropriate/curl:latest
+    command: ["-X", "DELETE", "elasticsearch:9200/store"]
+    depends_on:
+      - elasticsearch
+
   logstash:
     build:
       context: logstash/
@@ -81,6 +87,7 @@ services:
     networks:
       - mysql-elk
     depends_on:
+      - init
       - elasticsearch
 
   kibana:
