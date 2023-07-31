@@ -16,8 +16,8 @@
           "my_synonym_filter": {
             "type": "synonym",
             "synonyms": [
-              "피자, 판빵",
-              "통닭, 치킨"
+              "예시1, 예시2",
+              "예시3, 예시4"
             ]
           }
         },
