@@ -9,8 +9,7 @@
           "my_nori_tokenizer": {
             "type": "nori_tokenizer",
             "decompound_mode": "mixed",
-            "discard_punctuation": "false",
-            "user_dictionary": "/usr/share/logstash/sql/userdict.txt"
+            "discard_punctuation": "false"
           }
         },
         "analyzer": {
@@ -19,16 +18,9 @@
               "lowercase",
               "trim",
               "nori_readingform",
-              "nori_part_of_speech",
-              "synonym"
+              "nori_part_of_speech"
             ],
             "tokenizer": "my_nori_tokenizer"
-          }
-        },
-        "filter": {
-          "synonym": {
-            "type": "synonym",
-            "synonyms_path": "/usr/share/logstash/sql/synonym.txt"
           }
         }
       }
