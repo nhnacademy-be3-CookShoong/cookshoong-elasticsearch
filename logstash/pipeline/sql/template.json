@@ -12,13 +12,22 @@
             "discard_punctuation": "false"
           }
         },
+        "filter": {
+          "my_synonym_filter": {
+            "type": "synonym",
+            "synonyms": [
+              "피자, 핏짜, 휫짜, pizza, 알볼로"
+            ]
+          }
+        },
         "analyzer": {
           "my_nori_analyzer": {
             "filter": [
               "lowercase",
               "trim",
               "nori_readingform",
-              "nori_part_of_speech"
+              "nori_part_of_speech",
+              "my_synonym_filter"
             ],
             "tokenizer": "my_nori_tokenizer"
           }
