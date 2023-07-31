@@ -2,7 +2,7 @@ docker stop $(docker ps -a -q)
 
 docker rm $(docker ps -a -q)
 
-docker-compose up -d
+docker-compose up
 
 while true; do
     response=$(curl --write-out '%{http_code}' --silent --output /dev/null "http://localhost:9200")
