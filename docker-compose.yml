@@ -81,7 +81,6 @@ services:
     networks:
       - mysql-elk
     depends_on:
-      - init
       - elasticsearch
 
   kibana:
