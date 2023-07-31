@@ -15,10 +15,7 @@
         "filter": {
           "my_synonym_filter": {
             "type": "synonym",
-            "synonyms": [
-              "예시1, 예시2",
-              "예시3, 예시4"
-            ]
+            "synonyms_path": "/usr/share/logstash/sql/synonym.txt"
           }
         },
         "analyzer": {
