@@ -12,18 +12,11 @@
             "discard_punctuation": "false"
           }
         },
-        "filter": {
-          "my_synonym_filter": {
-            "type": "synonym",
-            "synonyms_path": "/usr/share/logstash/sql/synonym.txt"
-          }
-        },
         "analyzer": {
           "my_nori_analyzer": {
             "filter": [
               "lowercase",
               "trim",
-              "my_synonym_filter",
               "nori_readingform",
               "nori_part_of_speech"
             ],
