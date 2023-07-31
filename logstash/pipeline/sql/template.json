@@ -16,8 +16,8 @@
           "my_synonym_filter": {
             "type": "synonym",
             "synonyms": [
-              "피자, pizza",
-              "통닭, 치킨, 구운닭"
+              "피자, 판빵",
+              "통닭, 치킨"
             ]
           }
         },
