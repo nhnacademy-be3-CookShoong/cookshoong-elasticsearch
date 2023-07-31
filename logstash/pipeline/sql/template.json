@@ -15,7 +15,7 @@
         "filter": {
           "my_synonym_filter": {
             "type": "synonym",
-            "synonyms_path": "/usr/share/logstash/sql/synonym.txt"
+            "synonyms_path": "/home/shoong/cookshoong-elasticsearch/logstash/pipeline/sql/synonym.txt"
           }
         },
         "analyzer": {
