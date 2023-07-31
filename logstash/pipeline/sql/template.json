@@ -1,40 +1,8 @@
 {
-  "index_patterns": ["store"],
-  "settings": {
-    "index": {
-      "analysis": {
-        "tokenizer": {
-          "my_nori_tokenizer": {
-            "type": "nori_tokenizer",
-            "decompound_mode": "mixed",
-            "discard_punctuation": "false",
-            "user_dictionary": "/usr/share/logstash/sql/userdict.txt"
-          }
-        },
-        "filter": {
-          "stopwords":{
-            "type": "stop",
-            "stopwords": [" "]
-          },
-          "synonym": {
-            "type": "synonym",
-            "synonyms_path": "/usr/share/logstash/sql/synonym.txt"
-          }
-        },
-        "analyzer": {
-          "my_nori_analyzer": {
-            "type": "custom",
-            "tokenizer": "my_nori_tokenizer",
-            "filter": ["lowercase", "stop", "trim", "stopwords", "synonym", "nori_part_of_speech"],
-            "char_filter": ["html_strip"]
-          }
-        }
-      }
-    }
-  },
+  "index_patterns": ["cookshoong"],
   "mappings": {
     "properties": {
-      "id": {
+      "store_id": {
         "type": "keyword"
       },
       "name": {
@@ -51,6 +19,38 @@
         "type": "text",
         "analyzer": "my_nori_analyzer",
         "search_analyzer": "my_nori_analyzer"
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "analysis": {
+        "tokenizer": {
+          "my_nori_tokenizer": {
+            "type": "nori_tokenizer",
+            "decompound_mode": "mixed",
+            "discard_punctuation": "false",
+            "user_dictionary": "/usr/share/logstash/sql/userdict.txt"
+          }
+        },
+        "analyzer": {
+          "my_nori_analyzer": {
+            "filter": [
+              "lowercase", "trim", "nori_readingform", "stopwords", "nori_part_of_speech", "synonym"
+            ],
+            "tokenizer": "my_nori_tokenizer"
+          }
+        },
+        "filter": {
+          "synonym": {
+            "type": "synonym",
+            "synonyms_path": "/usr/share/logstash/sql/synonym.txt"
+          },
+          "stopwords":{
+            "type": "stop",
+            "stopwords": [" "]
+          }
+        }
       }
     }
   }
