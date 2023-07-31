@@ -1,4 +1,7 @@
 {
+  "index_patterns": [
+    "store*"
+  ],
   "settings": {
     "index": {
       "analysis": {
@@ -13,15 +16,9 @@
           "my_synonym_filter": {
             "type": "synonym",
             "synonyms": [
-              "피자, 핏짜",
-              "피자, 외국부침개"
+              "예시1, 예시2",
+              "예시3, 예시4"
             ]
-          },
-          "nori_readingform": {
-            "type": "nori_readingform"
-          },
-          "nori_part_of_speech": {
-            "type": "nori_part_of_speech"
           }
         },
         "analyzer": {
