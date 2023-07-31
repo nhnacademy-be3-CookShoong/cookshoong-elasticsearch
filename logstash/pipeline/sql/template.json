@@ -25,7 +25,7 @@
           "my_nori_analyzer": {
             "type": "custom",
             "tokenizer": "my_nori_tokenizer",
-            "filter": ["lowercase", "stop", "trim", "stopwords", "synonym", "nori_part_of_speech", "nori_readingform"],
+            "filter": ["lowercase", "stop", "trim", "stopwords", "synonym", "nori_part_of_speech"],
             "char_filter": ["html_strip"]
           }
         }

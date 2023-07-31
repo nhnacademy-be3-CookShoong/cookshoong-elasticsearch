@@ -64,12 +64,12 @@ services:
         target: /usr/share/logstash/config/pipelines.yml
         read_only: true
       - type: bind
-        source: ./logstash/pipeline/sql
-        target: /usr/share/logstash/sql
-        read_only: true
-      - type: bind
         source: ./logstash/pipeline/conf
         target: /usr/share/logstash/pipeline
+        read_only: true
+      - type: bind
+        source: ./logstash/pipeline/sql
+        target: /usr/share/logstash/sql
         read_only: true
     ports:
       - "5044:5044"
