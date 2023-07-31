@@ -19,7 +19,6 @@
               "lowercase",
               "trim",
               "nori_readingform",
-              "stopwords",
               "nori_part_of_speech",
               "synonym"
             ],
@@ -30,12 +29,6 @@
           "synonym": {
             "type": "synonym",
             "synonyms_path": "/usr/share/logstash/sql/synonym.txt"
-          },
-          "stopwords": {
-            "type": "stop",
-            "stopwords": [
-              " "
-            ]
           }
         }
       }
@@ -50,15 +43,13 @@
         "type": "text",
         "copy_to": [
           "keywordText"
-        ],
-        "analyzer": "my_nori_analyzer"
+        ]
       },
       "description": {
         "type": "text",
         "copy_to": [
           "keywordText"
-        ],
-        "analyzer": "my_nori_analyzer"
+        ]
       },
       "keywordText": {
         "type": "text",
