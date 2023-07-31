@@ -53,6 +53,5 @@
         "search_analyzer": "my_nori_analyzer"
       }
     }
-  },
-
+  }
 }
