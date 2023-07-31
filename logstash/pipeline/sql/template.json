@@ -8,7 +8,9 @@
             "type": "nori_tokenizer",
             "decompound_mode": "mixed",
             "discard_punctuation": "false",
-            "user_dictionary": "/usr/share/logstash/sql/userdict.txt"
+            "user_dictionary": [
+              "해물", "pizza", "피이자", "핏짜", "외국부침개"
+            ]
           }
         },
         "filter": {
@@ -18,7 +20,7 @@
           },
           "synonym": {
             "type": "synonym",
-            "synonyms_path": "/usr/share/logstash/sql/synonyms.txt"
+            "synonyms": ["피자, pizza, 피이자, 핏짜, 외국부침개"]
           }
         },
         "analyzer": {
