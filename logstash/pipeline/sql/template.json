@@ -1,27 +1,5 @@
 {
-  "index_patterns": ["cookshoong"],
-  "mappings": {
-    "properties": {
-      "store_id": {
-        "type": "keyword"
-      },
-      "name": {
-        "type": "text",
-        "copy_to": ["keywordText"],
-        "analyzer": "my_nori_analyzer"
-      },
-      "description": {
-        "type": "text",
-        "copy_to": ["keywordText"],
-        "analyzer": "my_nori_analyzer"
-      },
-      "keywordText": {
-        "type": "text",
-        "analyzer": "my_nori_analyzer",
-        "search_analyzer": "my_nori_analyzer"
-      }
-    }
-  },
+  "template": "store-*",
   "settings": {
     "index": {
       "analysis": {
@@ -53,5 +31,28 @@
         }
       }
     }
-  }
+  },
+  "mappings": {
+    "properties": {
+      "store_id": {
+        "type": "keyword"
+      },
+      "name": {
+        "type": "text",
+        "copy_to": ["keywordText"],
+        "analyzer": "my_nori_analyzer"
+      },
+      "description": {
+        "type": "text",
+        "copy_to": ["keywordText"],
+        "analyzer": "my_nori_analyzer"
+      },
+      "keywordText": {
+        "type": "text",
+        "analyzer": "my_nori_analyzer",
+        "search_analyzer": "my_nori_analyzer"
+      }
+    }
+  },
+
 }
