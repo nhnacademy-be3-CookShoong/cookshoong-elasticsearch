@@ -1,5 +1,7 @@
 {
-  "template": "store-*",
+  "index_patterns": [
+    "store*"
+  ],
   "settings": {
     "index": {
       "analysis": {
@@ -7,26 +9,28 @@
           "my_nori_tokenizer": {
             "type": "nori_tokenizer",
             "decompound_mode": "mixed",
-            "discard_punctuation": "false",
-            "user_dictionary": "/usr/share/logstash/sql/userdict.txt"
+            "discard_punctuation": "false"
           }
         },
         "analyzer": {
           "my_nori_analyzer": {
             "filter": [
-              "lowercase", "trim", "nori_readingform", "stopwords", "nori_part_of_speech", "synonym"
+              "lowercase",
+              "trim",
+              "nori_readingform",
+              "stopwords",
+              "nori_part_of_speech",
+              "synonym"
             ],
             "tokenizer": "my_nori_tokenizer"
           }
         },
         "filter": {
-          "synonym": {
-            "type": "synonym",
-            "synonyms_path": "/usr/share/logstash/sql/synonym.txt"
-          },
-          "stopwords":{
+          "stopwords": {
             "type": "stop",
-            "stopwords": [" "]
+            "stopwords": [
+              " "
+            ]
           }
         }
       }
@@ -39,12 +43,16 @@
       },
       "name": {
         "type": "text",
-        "copy_to": ["keywordText"],
+        "copy_to": [
+          "keywordText"
+        ],
         "analyzer": "my_nori_analyzer"
       },
       "description": {
         "type": "text",
-        "copy_to": ["keywordText"],
+        "copy_to": [
+          "keywordText"
+        ],
         "analyzer": "my_nori_analyzer"
       },
       "keywordText": {
