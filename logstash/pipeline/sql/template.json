@@ -10,13 +10,13 @@
             "type": "nori_tokenizer",
             "decompound_mode": "mixed",
             "discard_punctuation": "false",
-            "user_dictionary" : "userdict.txt"
+            "user_dictionary" : "analysis/userdict.txt"
           }
         },
         "filter": {
           "my_synonym_filter": {
             "type": "synonym",
-            "synonyms_path": "synonym.txt"
+            "synonyms_path": "analysis/synonym.txt"
           }
         },
         "analyzer": {
