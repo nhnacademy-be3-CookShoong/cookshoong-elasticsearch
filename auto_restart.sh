@@ -6,4 +6,4 @@ docker rmi $(docker images -q)
 
 docker volume rm $(docker volume ls)
 
-docker-compose up -d --build
+docker-compose up --build
