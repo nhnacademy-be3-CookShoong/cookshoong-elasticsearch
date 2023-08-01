@@ -1,0 +1,58 @@
+{
+  "index_patterns": [
+    "store*"
+  ],
+  "settings": {
+    "index": {
+      "analysis": {
+        "tokenizer": {
+          "my_nori_tokenizer": {
+            "type": "nori_tokenizer",
+            "decompound_mode": "mixed",
+            "discard_punctuation": "false",
+            "user_dictionary" : "/usr/share/logstash/sql/userdict.txt"
+          }
+        },
+        "filter": {
+          "my_synonym_filter": {
+            "type": "synonym",
+            "synonyms_path": "/usr/share/logstash/sql/synonym.txt"
+          }
+        },
+        "analyzer": {
+          "my_nori_analyzer": {
+            "type": "custom",
+            "filter": ["lowercase", "trim", "stopwords",
+              "my_synonym_filter", "nori_part_of_speech", "nori_readingform"],
+            "char_filter": ["html_strip"],
+            "tokenizer": "my_nori_tokenizer"
+          }
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "store_id": {
+        "type": "keyword"
+      },
+      "name": {
+        "type": "text",
+        "copy_to": [
+          "keywordText"
+        ]
+      },
+      "description": {
+        "type": "text",
+        "copy_to": [
+          "keywordText"
+        ]
+      },
+      "keywordText": {
+        "type": "text",
+        "analyzer": "my_nori_analyzer",
+        "search_analyzer": "my_nori_analyzer"
+      }
+    }
+  }
+}
