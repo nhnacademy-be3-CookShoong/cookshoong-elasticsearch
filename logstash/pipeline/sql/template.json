@@ -10,10 +10,14 @@
             "type": "nori_tokenizer",
             "decompound_mode": "mixed",
             "discard_punctuation": "false",
-            "user_dictionary" : "analysis/userdict.txt"
+            "user_dictionary": "analysis/userdict.txt"
           }
         },
         "filter": {
+          "stopwords":{
+            "type": "stop",
+            "stopwords": [" "]
+          },
           "my_synonym_filter": {
             "type": "synonym",
             "synonyms_path": "analysis/synonym.txt"
@@ -33,20 +37,19 @@
   },
   "mappings": {
     "properties": {
-      "store_id": {
+      "id": {
         "type": "keyword"
       },
       "name": {
         "type": "text",
-        "copy_to": [
-          "keywordText"
-        ]
+        "copy_to": ["keywordText"]
       },
       "description": {
         "type": "text",
-        "copy_to": [
-          "keywordText"
-        ]
+        "copy_to": ["keywordText"]
+      },
+      "category": {
+        "type": "keyword"
       },
       "keywordText": {
         "type": "text",
