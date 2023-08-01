@@ -10,13 +10,13 @@
             "type": "nori_tokenizer",
             "decompound_mode": "mixed",
             "discard_punctuation": "false",
-            "user_dictionary" : "/usr/share/logstash/sql/userdict.txt"
+            "user_dictionary" : "userdict.txt"
           }
         },
         "filter": {
           "my_synonym_filter": {
             "type": "synonym",
-            "synonyms_path": "/usr/share/logstash/sql/synonym.txt"
+            "synonyms_path": "synonym.txt"
           }
         },
         "analyzer": {
