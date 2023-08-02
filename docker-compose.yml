@@ -52,7 +52,7 @@ services:
       - "9200:9200"
       - "9300:9300"
     environment:
-      ES_JAVA_OPTS: "-Xmx1g -Xms1g"
+      LS_JAVA_OPTS: "-Xms512m -Xms512m"
       discovery.type: single-node
     networks:
       - mysql-elk
@@ -85,7 +85,7 @@ services:
       - "5000:5000/udp"
       - "9600:9600"
     environment:
-      LS_JAVA_OPTS: "-Xms1g -Xms1g"
+      LS_JAVA_OPTS: "-Xms512m -Xms512m"
     networks:
       - mysql-elk
     depends_on:
@@ -103,6 +103,8 @@ services:
         read_only: true
     ports:
       - "5601:5601"
+    environment:
+      LS_JAVA_OPTS: "-Xms512m -Xms512m"
     networks:
       - mysql-elk
     depends_on:
