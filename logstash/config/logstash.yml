@@ -1,3 +1,3 @@
-http.host: "0.0.0.0"
-xpack.monitoring.elasticsearch.hosts: [ "http://elasticsearch:9200" ]
+http.host: 180.210.80.12
+xpack.monitoring.elasticsearch.hosts: [ "180.210.80.12:9200", "133.186.155.23:9200","125.6.38.15:9200" ]
 xpack.monitoring.enabled: true

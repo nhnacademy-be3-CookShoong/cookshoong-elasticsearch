@@ -1,5 +1,18 @@
 cluster.name: "docker-cluster"
-network.host: 0.0.0.0
+node.name: node_1
+node.roles: [master, data]
+network.host: 180.210.80.12
+http.port: 9200
+transport.tcp.port: 9300
+discovery.seed_hosts: ["180.210.80.12:9300","133.186.155.23:9300","125.6.38.15:9300"]
+cluster.initial_master_nodes:
+  - node_1
+  - node_2
+  - node_3
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+bootstrap.memory_lock: true
+
 xpack.license.self_generated.type: basic
 xpack.security.enabled: false
 xpack.monitoring.collection.enabled: true
