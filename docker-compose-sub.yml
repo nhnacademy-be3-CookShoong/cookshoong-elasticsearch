@@ -15,15 +15,12 @@ services:
         target: /usr/share/elasticsearch/data
     ports:
       - "9200:9200"
-      - "9300:9300"
     networks:
       - mysql-elk
     environment:
-      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+volumes:
+  elasticsearch:
 
 networks:
   mysql-elk:
-    driver: bridge
-
-volumes:
-  elasticsearch:
