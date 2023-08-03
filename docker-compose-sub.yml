@@ -19,6 +19,7 @@ services:
     networks:
       - mysql-elk
     environment:
+      - node.name=node-1
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 volumes:
   elasticsearch:
