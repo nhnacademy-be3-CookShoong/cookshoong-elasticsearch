@@ -15,6 +15,7 @@ services:
         target: /usr/share/elasticsearch/data
     ports:
       - "9200:9200"
+      - "9300:9300"
     networks:
       - mysql-elk
     environment:
