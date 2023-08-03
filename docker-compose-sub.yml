@@ -20,9 +20,10 @@ services:
       - mysql-elk
     environment:
       - node.name=node-1
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.seed_hosts=125.6.38.15:9300,133.186.155.23:9300,180.210.80.12:9300
+      - cluster.initial_master_nodes=node-1,node-2,node-3
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
 volumes:
   elasticsearch:
-
-networks:
-  mysql-elk:
