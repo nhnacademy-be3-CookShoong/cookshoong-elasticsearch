@@ -19,5 +19,4 @@ services:
     environment:
       LS_JAVA_OPTS: "-Xms1g -Xmx1g"
 volumes:
-  mysql:
   elasticsearch:
