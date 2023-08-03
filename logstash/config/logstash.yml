@@ -1,7 +1,7 @@
 node.name: logstash
 config.reload.automatic: true
 config.reload.interval: 60s
-http.host: 180.210.80.12
+http.host: 0.0.0.0
 http.port: 9600
 xpack.monitoring.enabled: true
 xpack.monitoring.elasticsearch.hosts: ["http://180.210.80.12:9200","http://133.186.155.23:9200","http://125.6.38.15:9200"]
