@@ -19,7 +19,7 @@ services:
     networks:
       - mysql-elk
     environment:
-      LS_JAVA_OPTS: "-Xms1g -Xmx1g"
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
 
 networks:
   mysql-elk:
