@@ -1,5 +1,5 @@
 server.name: kibana
 server.host: 0.0.0.0
-server.port: 5601
-elasticsearch.hosts: ["http://180.210.80.12:9200","http://133.186.155.23:9200","http://125.6.38.15:9200"]
+elasticsearch.hosts: [ "http://elasticsearch:9200" ]
+monitoring.ui.container.elasticsearch.enabled: false
 
