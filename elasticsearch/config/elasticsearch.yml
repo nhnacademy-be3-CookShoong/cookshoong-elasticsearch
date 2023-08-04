@@ -1,5 +1,7 @@
 cluster.name: "docker-cluster"
+node.name: "node-1"
 network.host: 0.0.0.0
-xpack.license.self_generated.type: basic
-xpack.security.enabled: false
-xpack.monitoring.collection.enabled: true
+http.port: 9200
+transport.port: 9300
+discovery.seed_hosts: ["180.210.80.12:9300", "133.186.155.23:9300", "125.6.38.15:9300"]
+cluster.initial_master_nodes: ["node-1", "node-2", "node-3"]
