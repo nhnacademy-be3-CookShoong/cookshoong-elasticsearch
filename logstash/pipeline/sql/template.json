@@ -60,6 +60,14 @@
         "type": "text",
         "copy_to": ["keywordText"]
       },
+      "lat": {
+        "type": "float",
+        "copy_to": ["location"]
+      },
+      "lon": {
+        "type": "float",
+        "copy_to": ["location"]
+      },
       "location": {
         "type": "geo_point"
       },
