@@ -48,6 +48,10 @@
         "type": "text",
         "copy_to": ["keywordText"]
       },
+      "menus": {
+        "type": "text",
+        "copy_to": ["keywordText"]
+      },
       "category": {
         "type": "keyword"
       },
