@@ -52,6 +52,10 @@
         "type": "text",
         "copy_to": ["keywordText"]
       },
+      "place": {
+        "type": "text",
+        "copy_to": ["keywordText"]
+      },
       "categories": {
         "type": "text",
         "copy_to": ["keywordText"]
