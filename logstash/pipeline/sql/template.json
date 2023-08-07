@@ -56,12 +56,6 @@
         "type": "text",
         "copy_to": ["keywordText"]
       },
-      "lat": {
-        "type": "geo_point"
-      },
-      "lon": {
-        "type": "geo_point"
-      },
       "keywordText": {
         "type": "text",
         "analyzer": "my_nori_analyzer",
