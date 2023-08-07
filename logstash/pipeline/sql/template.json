@@ -60,6 +60,9 @@
         "type": "text",
         "copy_to": ["keywordText"]
       },
+      "location": {
+        "type": "geo_point"
+      },
       "keywordText": {
         "type": "text",
         "analyzer": "my_nori_analyzer",
