@@ -1,4 +1,4 @@
-SELECT stores.*, images.saved_name, addresses.latitude as lat, addresses.longitude as lon, addresses.main_place, GROUP_CONCAT(menu.name) as menus, GROUP_CONCAT(DISTINCT store_categories.description) as categories
+SELECT stores.*, images.saved_name, addresses.latitude as lat, addresses.longitude as lon, addresses.main_place as place, GROUP_CONCAT(menu.name) as menus, GROUP_CONCAT(DISTINCT store_categories.description) as categories
 FROM cookshoong_shop_dev.stores
          join images on stores.store_image_id = images.image_id
          join addresses on stores.address_id = addresses.address_id
