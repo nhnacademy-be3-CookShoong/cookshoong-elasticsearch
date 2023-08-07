@@ -52,8 +52,9 @@
         "type": "text",
         "copy_to": ["keywordText"]
       },
-      "category": {
-        "type": "keyword"
+      "categories": {
+        "type": "text",
+        "copy_to": ["keywordText"]
       },
       "keywordText": {
         "type": "text",
