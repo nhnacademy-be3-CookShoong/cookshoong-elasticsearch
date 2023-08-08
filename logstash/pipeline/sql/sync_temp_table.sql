@@ -6,7 +6,8 @@ SELECT stores.*,
        addresses.longitude as lon,
        addresses.main_place as place,
        GROUP_CONCAT(menu.name) as menus,
-       GROUP_CONCAT(DISTINCT store_categories.description) as categories
+       GROUP_CONCAT(DISTINCT store_categories.description) as categories,
+       MIN(menu.cooking_time) as minimum_cooking_time
 FROM cookshoong_shop_dev.stores
          join images on stores.store_image_id = images.image_id
          join addresses on stores.address_id = addresses.address_id
