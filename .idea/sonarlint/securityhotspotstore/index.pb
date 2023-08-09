@@ -1,14 +1,8 @@
 
-B
-docker-compose.yml,3/5/35b8c13cf2eb2a194eada000eb310d65aed53b2a
 Y
 )elasticsearch/config/analysis/synonym.txt,e/8/e84791522cb24f898408c9875e1c0de10ef2552b
 Z
 *elasticsearch/config/analysis/userdict.txt,3/d/3def1595c3a27658a578c08f8ef551a27dd21a3c
->
-all_restart.sh,4/e/4e294cd2d3772a12fd869019b0e0269d1d941fd5
-?
-auto_restart.sh,f/8/f8a56139f96cb735f948d47f6fd4c3bbbe3ce09f
 4
 .env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 H
@@ -17,8 +11,6 @@ A
 kibana/Dockerfile,b/6/b6392f12a8fd2a0ed040701e150829a1367b000c
 @
 mysql/Dockerfile,5/b/5ba21eb6a359df7369a0eb561162c8a4aa7055f7
-B
-mysql/sql/init.sql,f/e/fe2f3bbd8f01356a411c43d74f2842a94d606179
 F
 mysql/config/mysql.cnf,8/6/86d9bd2fa250c5ce9633e31744828c9acda94937
 C
