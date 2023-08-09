@@ -41,7 +41,12 @@
         "type": "keyword"
       },
       "store_status_code": {
-        "type": "keyword"
+        "type": "text",
+        "field": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
       },
       "name": {
         "type": "text",
