@@ -43,6 +43,9 @@
       "store_status_code": {
         "type": "keyword"
       },
+      "location": {
+        "type": "geo_point"
+      },
       "name": {
         "type": "text",
         "copy_to": ["keywordText"]
@@ -62,9 +65,6 @@
       "categories": {
         "type": "text",
         "copy_to": ["keywordText"]
-      },
-      "location": {
-        "type": "geo_point"
       },
       "keywordText": {
         "type": "text",
