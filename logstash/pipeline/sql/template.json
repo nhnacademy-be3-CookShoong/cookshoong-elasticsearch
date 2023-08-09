@@ -40,6 +40,9 @@
       "id": {
         "type": "keyword"
       },
+      "store_status_code": {
+        "type": "keyword"
+      },
       "name": {
         "type": "text",
         "copy_to": ["keywordText"]
