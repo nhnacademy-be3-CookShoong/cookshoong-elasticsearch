@@ -16,3 +16,18 @@ mysql -Dcookshoong_shop_prod -B --skip-column-names -e"SELECT CONCAT(word_dict.w
                                GROUP BY word_dict.word_id;" > /home/shoong/cookshoong-elasticsearch/elasticsearch/config/analysis/synonym.txt
 
 docker-compose up --build
+
+until $(curl --output /dev/null --silent --head --fail http://125.6.38.15:5601); do
+  printf 'Waiting for Kibana...\n'
+  sleep 5
+done
+
+# Index Pattern 생성
+curl -X POST "http://125.6.38.15:5601/api/saved_objects/index-pattern/my_index_pattern" \
+    -H "Content-Type: application/json" \
+    -H "kbn-version: 7.17.10" \ # Kibana 버전에 맞게 수정
+    -d '{
+      "attributes": {
+        "title": "store*"
+      }
+    }'
