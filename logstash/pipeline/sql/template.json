@@ -1,6 +1,6 @@
 {
   "index_patterns": [
-    "store-*"
+    "store*"
   ],
   "settings": {
     "index": {
