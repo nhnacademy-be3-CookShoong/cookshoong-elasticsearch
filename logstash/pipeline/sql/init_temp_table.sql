@@ -14,4 +14,4 @@ FROM cookshoong_shop_dev.stores
          left join menu on stores.store_id = menu.store_id
          left join stores_has_categories on stores.store_id = stores_has_categories.store_id
          left join store_categories on stores_has_categories.category_code = store_categories.category_code
-GROUP BY stores.store_id;
+GROUP BY stores.store_id
