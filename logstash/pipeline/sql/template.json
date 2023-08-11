@@ -40,9 +40,6 @@
       "id": {
         "type": "keyword"
       },
-      "store_status_code": {
-        "type": "keyword"
-      },
       "location": {
         "type": "geo_point"
       },

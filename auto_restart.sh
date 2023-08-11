@@ -15,4 +15,4 @@ mysql -Dcookshoong_shop_prod -B --skip-column-names -e"SELECT CONCAT(word_dict.w
                                JOIN cookshoong_shop_prod.word_dict AS wd ON wd.word_id = synonym_dict.synonym_word_id
                                GROUP BY word_dict.word_id;" > /home/shoong/cookshoong-elasticsearch/elasticsearch/config/analysis/synonym.txt
 
-docker-compose up
+docker-compose up --build
