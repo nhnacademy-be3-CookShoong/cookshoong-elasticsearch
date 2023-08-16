@@ -43,6 +43,12 @@
       "store_status_code": {
         "type": "keyword"
       },
+      "count_review": {
+        "type": "keyword"
+      },
+      "count_rating": {
+        "type": "keyword"
+      },
       "location": {
         "type": "geo_point"
       },
