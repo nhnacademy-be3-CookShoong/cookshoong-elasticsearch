@@ -1,1 +1,1 @@
-USE `cookshoong_shop_dev`;
+USE `cookshoong_shop_prod`;
