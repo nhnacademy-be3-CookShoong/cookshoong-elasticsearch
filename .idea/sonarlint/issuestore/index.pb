@@ -157,3 +157,9 @@ G.idea/sonarlint/issuestore/a/d/ad7b717de6f9c328fdd6b0a7727e86550c9032dd,6/1/61
 auto_restart.sh,f/8/f8a56139f96cb735f948d47f6fd4c3bbbe3ce09f
 B
 docker-compose.yml,3/5/35b8c13cf2eb2a194eada000eb310d65aed53b2a
+O
+logstash/pipeline/pipelines.yml,c/1/c156f422b974c192880a648c34429d1ba0cbd5ca
+C
+logstash/Dockerfile,0/5/05fb195fd109de6075a36b57d29466590d9d09d7
+S
+#logstash/pipeline/sql/template.json,5/4/547452026c3f3fab99d5a427cd19a528d14d8638
