@@ -168,7 +168,7 @@ services:
     networks:
       - mysql-elk
     depends_on:
-      - elasticsearch
+      - es01
 
   kibana:
     build:
@@ -185,7 +185,7 @@ services:
     networks:
       - mysql-elk
     depends_on:
-      - elasticsearch
+      - es01
 
 networks:
   mysql-elk:
