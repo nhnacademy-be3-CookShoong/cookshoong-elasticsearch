@@ -1,5 +1,6 @@
 version: '3.7'
 services:
+
   mysql:
     build:
       context: mysql/
@@ -27,7 +28,7 @@ services:
     networks:
       - mysql-elk
 
-  elasticsearch:
+  es01:
     build:
       context: elasticsearch/
       args:
@@ -52,10 +53,82 @@ services:
       - "9200:9200"
       - "9300:9300"
     environment:
-      - node.name=elasticsearch
-      - "ES_JAVA_OPTS=-Xms512m -Xms512m"
-      - discovery.type=single-node
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es02,es03
+      - cluster.initial_master_nodes=es01,es02,es03
       - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xms512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - mysql-elk
+
+  es02:
+    build:
+      context: elasticsearch/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - type: bind
+        source: ./elasticsearch/config/elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch.yml
+        read_only: true
+      - type: bind
+        source: ./elasticsearch/config/analysis/synonym.txt
+        target: /usr/share/elasticsearch/config/analysis/synonym.txt
+        read_only: true
+      - type: bind
+        source: ./elasticsearch/config/analysis/userdict.txt
+        target: /usr/share/elasticsearch/config/analysis/userdict.txt
+        read_only: true
+      - type: volume
+        source: elasticsearch
+        target: /usr/share/elasticsearch/data
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es01,es03
+      - cluster.initial_master_nodes=es01,es02,es03
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xms512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - mysql-elk
+
+  es03:
+    build:
+      context: elasticsearch/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - type: bind
+        source: ./elasticsearch/config/elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch.yml
+        read_only: true
+      - type: bind
+        source: ./elasticsearch/config/analysis/synonym.txt
+        target: /usr/share/elasticsearch/config/analysis/synonym.txt
+        read_only: true
+      - type: bind
+        source: ./elasticsearch/config/analysis/userdict.txt
+        target: /usr/share/elasticsearch/config/analysis/userdict.txt
+        read_only: true
+      - type: volume
+        source: elasticsearch
+        target: /usr/share/elasticsearch/data
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es01,es02
+      - cluster.initial_master_nodes=es01,es02,es03
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xms512m"
     ulimits:
       memlock:
         soft: -1
@@ -120,4 +193,9 @@ networks:
 
 volumes:
   mysql:
-  elasticsearch:
+  es01:
+    driver: local
+  es02:
+    driver: local
+  es03:
+    driver: local
