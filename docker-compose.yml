@@ -193,9 +193,4 @@ networks:
 
 volumes:
   mysql:
-  es01:
-    driver: local
-  es02:
-    driver: local
-  es03:
-    driver: local
+  elasticsearch:
