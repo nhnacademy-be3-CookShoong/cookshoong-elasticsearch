@@ -29,6 +29,7 @@ services:
       - mysql-elk
 
   es01:
+    container_name: es01
     build:
       context: elasticsearch/
       args:
@@ -47,11 +48,10 @@ services:
         target: /usr/share/elasticsearch/config/analysis/userdict.txt
         read_only: true
       - type: volume
-        source: elasticsearch
+        source: elasticsearch01
         target: /usr/share/elasticsearch/data
     ports:
       - "9200:9200"
-      - "9300:9300"
     environment:
       - node.name=es01
       - cluster.name=docker-cluster
@@ -67,6 +67,7 @@ services:
       - mysql-elk
 
   es02:
+    container_name: es02
     build:
       context: elasticsearch/
       args:
@@ -85,8 +86,10 @@ services:
         target: /usr/share/elasticsearch/config/analysis/userdict.txt
         read_only: true
       - type: volume
-        source: elasticsearch
+        source: elasticsearch02
         target: /usr/share/elasticsearch/data
+    ports:
+      - "9201:9201"
     environment:
       - node.name=es02
       - cluster.name=docker-cluster
@@ -102,6 +105,7 @@ services:
       - mysql-elk
 
   es03:
+    container_name: es03
     build:
       context: elasticsearch/
       args:
@@ -120,8 +124,10 @@ services:
         target: /usr/share/elasticsearch/config/analysis/userdict.txt
         read_only: true
       - type: volume
-        source: elasticsearch
+        source: elasticsearch03
         target: /usr/share/elasticsearch/data
+    ports:
+      - "9202:9202"
     environment:
       - node.name=es03
       - cluster.name=docker-cluster
@@ -193,4 +199,9 @@ networks:
 
 volumes:
   mysql:
-  elasticsearch:
+  elasticsearch01:
+    driver: local
+  elasticsearch02:
+    driver: local
+  elasticsearch03:
+    driver: local
