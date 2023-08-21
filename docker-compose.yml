@@ -89,7 +89,7 @@ services:
         source: elasticsearch02
         target: /usr/share/elasticsearch/data
     ports:
-      - "9201:9201"
+      - "9201:9200"
     environment:
       - node.name=es02
       - cluster.name=docker-cluster
@@ -127,7 +127,7 @@ services:
         source: elasticsearch03
         target: /usr/share/elasticsearch/data
     ports:
-      - "9202:9202"
+      - "9202:9200"
     environment:
       - node.name=es03
       - cluster.name=docker-cluster
