@@ -143,6 +143,7 @@ services:
       - mysql-elk
 
   logstash:
+    container_name: logstash
     build:
       context: logstash/
       args:
@@ -177,6 +178,7 @@ services:
       - es01
 
   kibana:
+    container_name: kibana
     build:
       context: kibana/
       args:
