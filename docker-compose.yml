@@ -1,5 +1,6 @@
 version: '3.7'
 services:
+
   mysql:
     build:
       context: mysql/
@@ -13,7 +14,7 @@ services:
       - type: bind
         source: ./mysql/sql
         target: /docker-entrypoint-initdb.d
-        read_only: true  
+        read_only: true
       - type: volume
         source: mysql
         target: /var/lib/mysql
@@ -21,13 +22,14 @@ services:
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=d4@]UGI)iVXa/kG6
-      - MYSQL_DATABASE=cookshoong_shop_dev
+      - MYSQL_DATABASE=cookshoong_shop_prod
       - MYSQL_USER=cookshoong
       - MYSQL_PASSWORD=d4@]UGI)iVXa/kG6
     networks:
       - mysql-elk
 
-  elasticsearch:
+  es01:
+    container_name: es01
     build:
       context: elasticsearch/
       args:
@@ -37,19 +39,111 @@ services:
         source: ./elasticsearch/config/elasticsearch.yml
         target: /usr/share/elasticsearch/config/elasticsearch.yml
         read_only: true
+      - type: bind
+        source: ./elasticsearch/config/analysis/synonym.txt
+        target: /usr/share/elasticsearch/config/analysis/synonym.txt
+        read_only: true
+      - type: bind
+        source: ./elasticsearch/config/analysis/userdict.txt
+        target: /usr/share/elasticsearch/config/analysis/userdict.txt
+        read_only: true
       - type: volume
-        source: elasticsearch
+        source: elasticsearch01
         target: /usr/share/elasticsearch/data
     ports:
       - "9200:9200"
-      - "9300:9300"
     environment:
-      ES_JAVA_OPTS: "-Xmx1g -Xms1g"
-      discovery.type: single-node
+      - node.name=es01
+      - cluster.name=docker-cluster
+      - discovery.seed_hosts=es02,es03
+      - cluster.initial_master_nodes=es01,es02,es03
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - mysql-elk
+
+  es02:
+    container_name: es02
+    build:
+      context: elasticsearch/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - type: bind
+        source: ./elasticsearch/config/elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch.yml
+        read_only: true
+      - type: bind
+        source: ./elasticsearch/config/analysis/synonym.txt
+        target: /usr/share/elasticsearch/config/analysis/synonym.txt
+        read_only: true
+      - type: bind
+        source: ./elasticsearch/config/analysis/userdict.txt
+        target: /usr/share/elasticsearch/config/analysis/userdict.txt
+        read_only: true
+      - type: volume
+        source: elasticsearch02
+        target: /usr/share/elasticsearch/data
+    ports:
+      - "9201:9200"
+    environment:
+      - node.name=es02
+      - cluster.name=docker-cluster
+      - discovery.seed_hosts=es01,es03
+      - cluster.initial_master_nodes=es01,es02,es03
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - mysql-elk
+
+  es03:
+    container_name: es03
+    build:
+      context: elasticsearch/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - type: bind
+        source: ./elasticsearch/config/elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch.yml
+        read_only: true
+      - type: bind
+        source: ./elasticsearch/config/analysis/synonym.txt
+        target: /usr/share/elasticsearch/config/analysis/synonym.txt
+        read_only: true
+      - type: bind
+        source: ./elasticsearch/config/analysis/userdict.txt
+        target: /usr/share/elasticsearch/config/analysis/userdict.txt
+        read_only: true
+      - type: volume
+        source: elasticsearch03
+        target: /usr/share/elasticsearch/data
+    ports:
+      - "9202:9200"
+    environment:
+      - node.name=es03
+      - cluster.name=docker-cluster
+      - discovery.seed_hosts=es01,es02
+      - cluster.initial_master_nodes=es01,es02,es03
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     networks:
       - mysql-elk
 
   logstash:
+    container_name: logstash
     build:
       context: logstash/
       args:
@@ -77,13 +171,14 @@ services:
       - "5000:5000/udp"
       - "9600:9600"
     environment:
-      LS_JAVA_OPTS: "-Xms1g -Xms1g"
+      - "LS_JAVA_OPTS=-Xms256m -Xmx256m"
     networks:
       - mysql-elk
     depends_on:
-      - elasticsearch
+      - es01
 
   kibana:
+    container_name: kibana
     build:
       context: kibana/
       args:
@@ -98,7 +193,7 @@ services:
     networks:
       - mysql-elk
     depends_on:
-      - elasticsearch
+      - es01
 
 networks:
   mysql-elk:
@@ -106,4 +201,9 @@ networks:
 
 volumes:
   mysql:
-  elasticsearch:
+  elasticsearch01:
+    driver: local
+  elasticsearch02:
+    driver: local
+  elasticsearch03:
+    driver: local
