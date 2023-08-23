@@ -23,12 +23,19 @@
             "synonyms_path": "analysis/synonym.txt"
           }
         },
+        "char_filter": {
+          "my_custom_filter": {
+            "type": "pattern_replace",
+            "pattern": "[^가-힣a-zA-Z0-9]",
+            "replacement": ""
+          }
+        },
         "analyzer": {
           "my_nori_analyzer": {
             "type": "custom",
             "filter": ["lowercase", "trim", "stopwords",
               "my_synonym_filter", "nori_part_of_speech", "nori_readingform"],
-            "char_filter": ["html_strip"],
+            "char_filter": ["html_strip", "my_custom_filter"],
             "tokenizer": "my_nori_tokenizer"
           }
         }
