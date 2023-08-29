@@ -63,7 +63,6 @@
             "type": "custom",
             "tokenizer": "jaso_index_tokenizer",
             "filter": [
-              "lowercase",
               "trim",
               "whitespace_remove_filter",
               "my_synonym_filter",
