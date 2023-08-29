@@ -116,7 +116,7 @@
       },
       "description": {
         "type": "text",
-        "copy_to": ["keywordText.keyword_nori"]
+        "copy_to": ["keywordText"]
       },
       "keywordText": {
         "type": "text",
