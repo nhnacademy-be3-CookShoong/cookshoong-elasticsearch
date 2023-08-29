@@ -59,7 +59,6 @@
             "type": "custom",
             "tokenizer": "jaso_index_tokenizer",
             "filter": [
-              "lowercase",
               "trim",
               "whitespace_remove_filter",
               "my_synonym_filter",
@@ -73,7 +72,6 @@
             "type": "custom",
             "tokenizer": "jaso_search_tokenizer",
             "filter": [
-              "lowercase",
               "trim",
               "whitespace_remove_filter",
               "my_synonym_filter"
@@ -139,11 +137,6 @@
         "search_analyzer": "my_nori_analyzer"
       },
       "keywordText_jaso_name": {
-        "type": "text",
-        "analyzer": "suggest_index_analyzer",
-        "search_analyzer": "suggest_search_analyzer"
-      },
-      "keywordText_jaso_categories": {
         "type": "text",
         "analyzer": "suggest_index_analyzer",
         "search_analyzer": "suggest_search_analyzer"
