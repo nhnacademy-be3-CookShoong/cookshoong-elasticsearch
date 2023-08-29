@@ -11,6 +11,17 @@
             "decompound_mode": "mixed",
             "discard_punctuation": "false",
             "user_dictionary": "analysis/userdict.txt"
+          },
+          "my_ngram_tokenizer": {
+            "token_chars": [
+              "letter",
+              "digit",
+              "punctuation",
+              "symbol"
+            ],
+            "min_gram": "2",
+            "type": "ngram",
+            "max_gram": "3"
           }
         },
         "filter": {
