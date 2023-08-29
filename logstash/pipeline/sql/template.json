@@ -17,8 +17,8 @@
           },
           "suggest_filter": {
             "type": "edge_ngram",
-            "min_gram": 2,
-            "max_gram": 10,
+            "min_gram": 1,
+            "max_gram": 500
           }
         },
         "tokenizer": {
@@ -124,7 +124,7 @@
       "menus": {
         "type": "text",
         "copy_to": [
-          "keywordText_jamo", "keywordText_nori"
+          "keywordText_nori"
         ]
       },
       "description": {
