@@ -4,38 +4,10 @@
   ],
   "settings": {
     "index": {
+
       "analysis": {
-        "tokenizer": {
-          "my_nori_tokenizer": {
-            "type": "nori_tokenizer",
-            "decompound_mode": "mixed",
-            "discard_punctuation": "false",
-            "user_dictionary": "analysis/userdict.txt"
-          },
-          "my_ngram_tokenizer": {
-            "token_chars": [
-              "letter",
-              "digit",
-              "punctuation",
-              "symbol"
-            ],
-            "min_gram": "2",
-            "type": "ngram",
-            "max_gram": "3"
-          }
-        },
+
         "filter": {
-          "edge_ngram_filter_front" : {
-            "type" : "edge_ngram",
-            "min_gram" : "1",
-            "max_gram" : "20"
-          },
-          "edge_ngram_filter_back" : {
-            "type" : "edge_ngram",
-            "min_gram" : "1",
-            "max_gram" : "20",
-            "side" : "back"
-          },
           "whitespace_remove_filter" : {
             "type" : "pattern_replace",
             "pattern" : " ",
@@ -44,8 +16,33 @@
           "my_synonym_filter": {
             "type": "synonym",
             "synonyms_path": "analysis/synonym.txt"
+          },
+          "suggest_filter": {
+            "type": "edge_ngram",
+            "min_gram": 1,
+            "max_gram": 50
           }
         },
+
+        "tokenizer": {
+          "my_nori_tokenizer": {
+            "type": "nori_tokenizer",
+            "decompound_mode": "mixed",
+            "discard_punctuation": "false",
+            "user_dictionary": "analysis/userdict.txt"
+          },
+          "jaso_search_tokenizer": {
+            "type": "jaso_tokenizer",
+            "mistype": true,
+            "chosung": false
+          },
+          "jaso_index_tokenizer": {
+            "type": "jaso_tokenizer",
+            "mistype": true,
+            "chosung": true
+          }
+        },
+
         "analyzer": {
           "my_nori_analyzer": {
             "type": "custom",
@@ -59,64 +56,15 @@
             "char_filter": ["html_strip"],
             "tokenizer": "my_nori_tokenizer"
           },
-          "jamo_ngram_front_analyzer" : {
-            "type" : "custom",
-            "tokenizer" : "keyword",
-            "filter" : [
-              "trim",
-              "whitespace_remove_filter",
-              "lowercase",
-              "jamo_filter",
-              "edge_ngram_filter_front"
-            ]
+          "suggest_search_analyzer": {
+            "type": "custom",
+            "tokenizer": "jaso_search_tokenizer"
           },
-          "ngram_analyzer" : {
-            "type" : "custom",
-            "tokenizer" : "ngram_tokenizer",
-            "filter" : [
-              "trim",
-              "lowercase",
-              "whitespace_remove_filter"
-            ]
-          },
-          "chosung_ngram_analyzer" : {
-            "type" : "custom",
-            "tokenizer" : "keyword",
-            "filter" : [
-              "trim",
-              "whitespace_remove_filter",
-              "chosung_fliter",
-              "edge_ngram_filter_front"
-            ]
-          },
-          "language_convert_ngram_analyzer" : {
-            "type" : "custom",
-            "tokenizer" : "keyword",
-            "filter" : [
-              "trim",
-              "lowercase",
-              "whitespace_remove_filter",
-              "language_filter",
-              "edge_ngram_filter_front"
-            ]
-          },
-          "jamo_analyzer" : {
-            "type" : "custom",
-            "tokenizer" : "keyword",
-            "filter" : [
-              "trim",
-              "lowercase",
-              "whitespace_remove_filter",
-              "jamo_filter"
-            ]
-          },
-          "whitespace_remove_analyzer" : {
-            "type" : "custom",
-            "tokenizer" : "keyword",
-            "filter" : [
-              "lowercase",
-              "trim",
-              "whitespace_remove_filter"
+          "suggest_index_analyzer": {
+            "type": "custom",
+            "tokenizer": "jaso_index_tokenizer",
+            "filter": [
+              "suggest_filter"
             ]
           }
         }
