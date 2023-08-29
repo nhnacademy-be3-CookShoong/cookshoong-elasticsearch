@@ -25,9 +25,21 @@
           }
         },
         "filter": {
-          "stopwords":{
-            "type": "stop",
-            "stopwords": [" "]
+          "edge_ngram_filter_front" : {
+            "type" : "edge_ngram",
+            "min_gram" : "1",
+            "max_gram" : "20"
+          },
+          "edge_ngram_filter_back" : {
+            "type" : "edge_ngram",
+            "min_gram" : "1",
+            "max_gram" : "20",
+            "side" : "back"
+          },
+          "whitespace_remove_filter" : {
+            "type" : "pattern_replace",
+            "pattern" : " ",
+            "replacement" : ""
           },
           "my_synonym_filter": {
             "type": "synonym",
@@ -37,7 +49,7 @@
         "analyzer": {
           "my_nori_analyzer": {
             "type": "custom",
-            "filter": ["lowercase", "trim", "stopwords",
+            "filter": ["lowercase", "trim", "whitespace_remove_filter",
               "my_synonym_filter", "nori_part_of_speech", "nori_readingform"],
             "char_filter": ["html_strip"],
             "tokenizer": "my_nori_tokenizer"
