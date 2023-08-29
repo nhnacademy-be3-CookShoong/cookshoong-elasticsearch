@@ -4,14 +4,12 @@
   ],
   "settings": {
     "index": {
-
       "analysis": {
-
         "filter": {
-          "whitespace_remove_filter" : {
-            "type" : "pattern_replace",
-            "pattern" : " ",
-            "replacement" : ""
+          "whitespace_remove_filter": {
+            "type": "pattern_replace",
+            "pattern": " ",
+            "replacement": ""
           },
           "my_synonym_filter": {
             "type": "synonym",
@@ -23,7 +21,6 @@
             "max_gram": 500
           }
         },
-
         "tokenizer": {
           "my_nori_tokenizer": {
             "type": "nori_tokenizer",
@@ -42,7 +39,6 @@
             "chosung": true
           }
         },
-
         "analyzer": {
           "my_nori_analyzer": {
             "type": "custom",
@@ -63,6 +59,7 @@
             "type": "custom",
             "tokenizer": "jaso_index_tokenizer",
             "filter": [
+              "lowercase",
               "trim",
               "whitespace_remove_filter",
               "my_synonym_filter",
@@ -74,7 +71,16 @@
           },
           "suggest_search_analyzer": {
             "type": "custom",
-            "tokenizer": "jaso_search_tokenizer"
+            "tokenizer": "jaso_search_tokenizer",
+            "filter": [
+              "lowercase",
+              "trim",
+              "whitespace_remove_filter",
+              "my_synonym_filter"
+            ],
+            "char_filter": [
+              "html_strip"
+            ]
           }
         }
       }
@@ -99,38 +105,43 @@
       },
       "name": {
         "type": "text",
-        "copy_to": ["keywordText"]
+        "copy_to": [
+          "keywordText_jamo", "keywordText_nori"
+        ]
       },
       "categories": {
         "type": "text",
-        "copy_to": ["keywordText"]
+        "copy_to": [
+          "keywordText_jamo", "keywordText_nori"
+        ]
       },
       "place": {
         "type": "text",
-        "copy_to": ["keywordText"]
+        "copy_to": [
+          "keywordText_jamo", "keywordText_nori"
+        ]
       },
       "menus": {
         "type": "text",
-        "copy_to": ["keywordText"]
+        "copy_to": [
+          "keywordText_jamo", "keywordText_nori"
+        ]
       },
       "description": {
         "type": "text",
-        "copy_to": ["keywordText"]
+        "copy_to": [
+          "keywordText_nori"
+        ]
       },
-      "keywordText": {
+      "keywordText_jamo": {
         "type": "text",
-        "fields": {
-          "keyword_jamo": {
-            "analyzer": "suggest_index_analyzer",
-            "search_analyzer": "suggest_search_analyzer",
-            "type": "text"
-          },
-          "keyword_nori": {
-            "analyzer": "my_nori_analyzer",
-            "search_analyzer": "my_nori_analyzer",
-            "type": "text"
-          }
-        }
+        "analyzer": "suggest_index_analyzer",
+        "search_analyzer": "suggest_search_analyzer"
+      },
+      "keywordText_nori": {
+        "type": "text",
+        "analyzer": "my_nori_analyzer",
+        "search_analyzer": "my_nori_analyzer"
       }
     }
   }
