@@ -113,11 +113,13 @@
         "fields": {
           "keyword_jamo": {
             "analyzer": "suggest_index_analyzer",
-            "search_analyzer": "suggest_search_analyzer"
+            "search_analyzer": "suggest_search_analyzer",
+            "type": "text"
           },
           "keyword_nori": {
             "analyzer": "my_nori_analyzer",
-            "search_analyzer": "my_nori_analyzer"
+            "search_analyzer": "my_nori_analyzer",
+            "type": "text"
           }
         }
       }
