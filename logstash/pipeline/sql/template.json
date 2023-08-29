@@ -14,9 +14,21 @@
           }
         },
         "filter": {
-          "stopwords":{
-            "type": "stop",
-            "stopwords": [" "]
+          "edge_ngram_filter_front": {
+            "type": "edge_ngram",
+            "min_gram": "1",
+            "max_gram": "20"
+          },
+          "edge_ngram_filter_back": {
+            "type": "edge_ngram",
+            "min_gram": "1",
+            "max_gram": "20",
+            "side": "back"
+          },
+          "whitespace_remove_filter":{
+            "type": "pattern_replace",
+            "pattern": " ",
+            "replacement": ""
           },
           "my_synonym_filter": {
             "type": "synonym",
@@ -31,12 +43,81 @@
           }
         },
         "analyzer": {
+          "jamo_ngram_front_analyzer": {
+            "type": "custom",
+            "tokenizer": "keyword",
+            "filter": [
+              "trim",
+              "whitespace_remove_filter",
+              "lowercase",
+              "jamo_filter",
+              "edge_ngram_filter_front"
+            ]
+          },
+          "ngram_analyzer": {
+            "type": "custom",
+            "tokenizer": "ngram_tokenizer",
+            "filter": [
+              "trim",
+              "lowercase",
+              "whitespace_remove_filter"
+            ]
+          },
+          "chosung_ngram_analyzer": {
+            "type": "custom",
+            "tokenizer": "keyword",
+            "filter": [
+              "trim",
+              "whitespace_remove_filter",
+              "chosung_filter",
+              "edge_ngram_filter_front"
+            ]
+          },
+          "language_convert_ngram_analyzer": {
+            "type": "custom",
+            "tokenizer": "keyword",
+            "filter": [
+              "trim",
+              "lowercase",
+              "whitespace_remove_filter",
+              "language_filter",
+              "edge_ngram_filter_front"
+            ]
+          },
+          "jamo_analyzer": {
+            "type": "custom",
+            "tokenizer": "keyword",
+            "filter": [
+              "trim",
+              "lowercase",
+              "whitespace_remove_filter",
+              "jamo_filter"
+            ]
+          },
+          "whitespace_remove_analyzer": {
+            "type": "custom",
+            "tokenizer": "keyword",
+            "filter": [
+              "lowercase",
+              "trim",
+              "whitespace_remove_filter"
+            ]
+          },
           "my_nori_analyzer": {
             "type": "custom",
-            "filter": ["lowercase", "trim", "stopwords",
-              "my_synonym_filter", "nori_part_of_speech", "nori_readingform"],
-            "char_filter": ["html_strip", "my_custom_filter"],
-            "tokenizer": "my_nori_tokenizer"
+            "tokenizer": "my_nori_tokenizer",
+            "filter": [
+              "trim",
+              "whitespace_remove_filter",
+              "lowercase",
+              "my_synonym_filter",
+              "nori_part_of_speech",
+              "nori_readingform"
+            ],
+            "char_filter": [
+              "html_strip",
+              "my_custom_filter"
+            ]
           }
         }
       }
@@ -81,8 +162,33 @@
       },
       "keywordText": {
         "type": "text",
-        "analyzer": "my_nori_analyzer",
-        "search_analyzer": "my_nori_analyzer"
+        "fields": {
+          "keyword_jamo" : {
+            "analyzer": "jamo_ngram_front_analyzer",
+            "search_analyzer": "jamo_analyzer",
+            "type": "text"
+          },
+          "keyword_ngram": {
+            "analyzer": "ngram_analyzer",
+            "search_analyzer": "whitespace_remove_analyzer",
+            "type": "text"
+          },
+          "keyword_chosung": {
+            "analyzer": "chosung_ngram_analyzer",
+            "search_analyzer": "whitespace_remove_analyzer",
+            "type": "text"
+          },
+          "keyword_type": {
+            "analyzer": "language_convert_ngram_analyzer",
+            "search_analyzer": "whitespace_remove_analyzer",
+            "type": "text"
+          },
+          "keyword_analyzer": {
+            "analyzer": "my_nori_analyzer",
+            "search_analyzer": "my_nori_analyzer",
+            "type": "text"
+          }
+        }
       }
     }
   }
