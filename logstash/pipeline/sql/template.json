@@ -16,7 +16,7 @@
             "synonyms_path": "analysis/synonym.txt"
           },
           "suggest_filter": {
-            "type": "ngram",
+            "type": "nGram",
             "min_gram": 2,
             "max_gram": 5
           }
