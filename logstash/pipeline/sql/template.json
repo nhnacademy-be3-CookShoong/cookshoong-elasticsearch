@@ -58,6 +58,66 @@
               "nori_readingform"],
             "char_filter": ["html_strip"],
             "tokenizer": "my_nori_tokenizer"
+          },
+          "jamo_ngram_front_analyzer" : {
+            "type" : "custom",
+            "tokenizer" : "keyword",
+            "filter" : [
+              "trim",
+              "whitespace_remove_filter",
+              "lowercase",
+              "jamo_filter",
+              "edge_ngram_filter_front"
+            ]
+          },
+          "ngram_analyzer" : {
+            "type" : "custom",
+            "tokenizer" : "ngram_tokenizer",
+            "filter" : [
+              "trim",
+              "lowercase",
+              "whitespace_remove_filter"
+            ]
+          },
+          "chosung_ngram_analyzer" : {
+            "type" : "custom",
+            "tokenizer" : "keyword",
+            "filter" : [
+              "trim",
+              "whitespace_remove_filter",
+              "chosung_fliter",
+              "edge_ngram_filter_front"
+            ]
+          },
+          "language_convert_ngram_analyzer" : {
+            "type" : "custom",
+            "tokenizer" : "keyword",
+            "filter" : [
+              "trim",
+              "lowercase",
+              "whitespace_remove_filter",
+              "language_filter",
+              "edge_ngram_filter_front"
+            ]
+          },
+          "jamo_analyzer" : {
+            "type" : "custom",
+            "tokenizer" : "keyword",
+            "filter" : [
+              "trim",
+              "lowercase",
+              "whitespace_remove_filter",
+              "jamo_filter"
+            ]
+          },
+          "whitespace_remove_analyzer" : {
+            "type" : "custom",
+            "tokenizer" : "keyword",
+            "filter" : [
+              "lowercase",
+              "trim",
+              "whitespace_remove_filter"
+            ]
           }
         }
       }
