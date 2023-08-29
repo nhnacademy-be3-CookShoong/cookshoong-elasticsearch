@@ -20,7 +20,7 @@
           "suggest_filter": {
             "type": "edge_ngram",
             "min_gram": 1,
-            "max_gram": 50
+            "max_gram": 500
           }
         },
 
@@ -92,11 +92,7 @@
         "type": "text",
         "copy_to": ["keywordText"]
       },
-      "description": {
-        "type": "text",
-        "copy_to": ["keywordText"]
-      },
-      "menus": {
+      "categories": {
         "type": "text",
         "copy_to": ["keywordText"]
       },
@@ -104,7 +100,11 @@
         "type": "text",
         "copy_to": ["keywordText"]
       },
-      "categories": {
+      "menus": {
+        "type": "text",
+        "copy_to": ["keywordText"]
+      },
+      "description": {
         "type": "text",
         "copy_to": ["keywordText"]
       },
