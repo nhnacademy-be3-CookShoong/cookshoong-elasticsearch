@@ -11,14 +11,19 @@
             "pattern": " ",
             "replacement": ""
           },
+          "special_remove_filter": {
+            "type": "pattern_replace",
+            "pattern": "[^가-힣a-zA-Z0-9]",
+            "replacement": ""
+          },
           "my_synonym_filter": {
             "type": "synonym",
             "synonyms_path": "analysis/synonym.txt"
           },
           "suggest_filter": {
-            "type": "ngram",
+            "type": "edge_ngram",
             "min_gram": 1,
-            "max_gram": 10
+            "max_gram": 100
           }
         },
         "tokenizer": {
@@ -47,6 +52,7 @@
               "lowercase",
               "trim",
               "whitespace_remove_filter",
+              "special_remove_filter",
               "my_synonym_filter",
               "nori_part_of_speech",
               "nori_readingform"
@@ -59,12 +65,20 @@
             "type": "custom",
             "tokenizer": "jaso_index_tokenizer",
             "filter": [
+              "trim",
+              "whitespace_remove_filter",
+              "special_remove_filter",
               "suggest_filter"
             ]
           },
           "suggest_search_analyzer": {
             "type": "custom",
-            "tokenizer": "jaso_search_tokenizer"
+            "tokenizer": "jaso_search_tokenizer",
+            "filter": [
+              "trim",
+              "whitespace_remove_filter",
+              "special_remove_filter"
+            ]
           }
         }
       }
