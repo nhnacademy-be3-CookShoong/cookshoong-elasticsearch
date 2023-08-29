@@ -49,8 +49,13 @@
         "analyzer": {
           "my_nori_analyzer": {
             "type": "custom",
-            "filter": ["lowercase", "trim", "whitespace_remove_filter",
-              "my_synonym_filter", "nori_part_of_speech", "nori_readingform"],
+            "filter": [
+              "lowercase",
+              "trim",
+              "whitespace_remove_filter",
+              "my_synonym_filter",
+              "nori_part_of_speech",
+              "nori_readingform"],
             "char_filter": ["html_strip"],
             "tokenizer": "my_nori_tokenizer"
           }
