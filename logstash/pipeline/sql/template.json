@@ -16,9 +16,14 @@
             "synonyms_path": "analysis/synonym.txt"
           },
           "suggest_filter": {
-            "type": "edge_ngram",
-            "min_gram": 1,
-            "max_gram": 500
+            "type": "ngram",
+            "min_gram": 2,
+            "max_gram": 10,
+            "token_chars": [
+              "letter",
+              "digit",
+              "punctuation"
+            ]
           }
         },
         "tokenizer": {
