@@ -16,11 +16,6 @@
           "my_synonym_filter": {
             "type": "synonym",
             "synonyms_path": "analysis/synonym.txt"
-          },
-          "suggest_filter": {
-            "type": "edge_ngram",
-            "min_gram": 1,
-            "max_gram": 500
           }
         },
 
@@ -46,26 +41,37 @@
         "analyzer": {
           "my_nori_analyzer": {
             "type": "custom",
+            "tokenizer": "my_nori_tokenizer",
             "filter": [
               "lowercase",
               "trim",
               "whitespace_remove_filter",
               "my_synonym_filter",
               "nori_part_of_speech",
-              "nori_readingform"],
-            "char_filter": ["html_strip"],
-            "tokenizer": "my_nori_tokenizer"
+              "nori_readingform"
+            ],
+            "char_filter": [
+              "html_strip"
+            ]
           },
-          "suggest_search_analyzer": {
-            "type": "custom",
-            "tokenizer": "jaso_search_tokenizer"
-          },
+
           "suggest_index_analyzer": {
             "type": "custom",
             "tokenizer": "jaso_index_tokenizer",
             "filter": [
-              "suggest_filter"
+              "lowercase",
+              "trim",
+              "whitespace_remove_filter",
+              "my_synonym_filter"
+            ],
+            "char_filter": [
+              "html_strip"
             ]
+          },
+
+          "suggest_search_analyzer": {
+            "type": "custom",
+            "tokenizer": "jaso_search_tokenizer"
           }
         }
       }
