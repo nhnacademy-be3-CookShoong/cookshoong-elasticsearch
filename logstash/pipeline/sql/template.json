@@ -16,6 +16,11 @@
           "my_synonym_filter": {
             "type": "synonym",
             "synonyms_path": "analysis/synonym.txt"
+          },
+          "suggest_filter": {
+            "type": "edge_ngram",
+            "min_gram": 1,
+            "max_gram": 500
           }
         },
 
@@ -54,7 +59,6 @@
               "html_strip"
             ]
           },
-
           "suggest_index_analyzer": {
             "type": "custom",
             "tokenizer": "jaso_index_tokenizer",
@@ -62,13 +66,13 @@
               "lowercase",
               "trim",
               "whitespace_remove_filter",
-              "my_synonym_filter"
+              "my_synonym_filter",
+              "suggest_filter"
             ],
             "char_filter": [
               "html_strip"
             ]
           },
-
           "suggest_search_analyzer": {
             "type": "custom",
             "tokenizer": "jaso_search_tokenizer"
@@ -112,7 +116,7 @@
       },
       "description": {
         "type": "text",
-        "copy_to": ["keywordText"]
+        "copy_to": ["keywordText.keyword_nori"]
       },
       "keywordText": {
         "type": "text",
