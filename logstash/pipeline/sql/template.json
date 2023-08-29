@@ -16,9 +16,9 @@
             "synonyms_path": "analysis/synonym.txt"
           },
           "suggest_filter": {
-            "type": "nGram",
-            "min_gram": 2,
-            "max_gram": 5
+            "type": "edge_ngram",
+            "min_gram": 1,
+            "max_gram": 100
           }
         },
         "tokenizer": {
@@ -106,19 +106,19 @@
       "name": {
         "type": "text",
         "copy_to": [
-          "keywordText_jamo", "keywordText_nori"
+          "keywordText_nori", "keywordText_jaso_name"
         ]
       },
       "categories": {
         "type": "text",
         "copy_to": [
-          "keywordText_jamo", "keywordText_nori"
+          "keywordText_nori", "keywordText_jaso_categories"
         ]
       },
       "place": {
         "type": "text",
         "copy_to": [
-          "keywordText_jamo", "keywordText_nori"
+          "keywordText_nori", "keywordText_jaso_place"
         ]
       },
       "menus": {
@@ -133,15 +133,25 @@
           "keywordText_nori"
         ]
       },
-      "keywordText_jamo": {
-        "type": "text",
-        "analyzer": "suggest_index_analyzer",
-        "search_analyzer": "suggest_search_analyzer"
-      },
       "keywordText_nori": {
         "type": "text",
         "analyzer": "my_nori_analyzer",
         "search_analyzer": "my_nori_analyzer"
+      },
+      "keywordText_jaso_name": {
+        "type": "text",
+        "analyzer": "suggest_index_analyzer",
+        "search_analyzer": "suggest_search_analyzer"
+      },
+      "keywordText_jaso_categories": {
+        "type": "text",
+        "analyzer": "suggest_index_analyzer",
+        "search_analyzer": "suggest_search_analyzer"
+      },
+      "keywordText_jaso_place": {
+        "type": "text",
+        "analyzer": "suggest_index_analyzer",
+        "search_analyzer": "suggest_search_analyzer"
       }
     }
   }
