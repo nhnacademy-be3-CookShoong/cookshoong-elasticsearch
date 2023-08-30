@@ -76,10 +76,7 @@
           },
           "suggest_search_analyzer": {
             "type": "custom",
-            "tokenizer": "jaso_search_tokenizer",
-            "filter": [
-              "special_replace_filter"
-            ]
+            "tokenizer": "jaso_search_tokenizer"
           }
         }
       }
