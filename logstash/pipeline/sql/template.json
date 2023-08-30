@@ -18,7 +18,7 @@
           },
           "special_remove_filter": {
             "type": "pattern_replace",
-            "pattern": "[^가-힣a-zA-Z0-9]",
+            "pattern": "[^ㄱ-ㅎ가-힣a-zA-Z0-9]",
             "replacement": ""
           },
           "my_synonym_filter": {
