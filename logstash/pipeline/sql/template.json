@@ -13,7 +13,7 @@
           },
           "special_replace_filter": {
             "type": "pattern_replace",
-            "pattern": "[^가-힣a-zA-Z0-9]",
+            "pattern": "[^ㄱ-ㅎ가-힣a-zA-Z0-9]",
             "replacement": " "
           },
           "special_remove_filter": {
