@@ -10,7 +10,7 @@ SELECT stores.*,
        MIN(menu.cooking_time) as minimum_cooking_time,
        COUNT(DISTINCT review.review_id) as count_review,
        AVG(review.rating) as count_rating
-FROM cookshoong_shop_dev.stores
+FROM cookshoong_shop_prod.stores
          join images on stores.store_image_id = images.image_id
          join addresses on stores.address_id = addresses.address_id
          left join orders on stores.store_id = orders.store_id

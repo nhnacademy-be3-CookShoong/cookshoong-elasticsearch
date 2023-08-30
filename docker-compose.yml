@@ -22,7 +22,7 @@ services:
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=d4@]UGI)iVXa/kG6
-      - MYSQL_DATABASE=cookshoong_shop_dev
+      - MYSQL_DATABASE=cookshoong_shop_prod
       - MYSQL_USER=cookshoong
       - MYSQL_PASSWORD=d4@]UGI)iVXa/kG6
     networks:
