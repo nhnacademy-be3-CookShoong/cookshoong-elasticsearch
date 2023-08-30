@@ -13,12 +13,12 @@
           },
           "special_replace_filter": {
             "type": "pattern_replace",
-            "pattern": "[^ㄱ-ㅎ가-힣a-zA-Z0-9]",
+            "pattern": "[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]",
             "replacement": " "
           },
           "special_remove_filter": {
             "type": "pattern_replace",
-            "pattern": "[^ㄱ-ㅎ가-힣a-zA-Z0-9]",
+            "pattern": "[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]",
             "replacement": ""
           },
           "my_synonym_filter": {
