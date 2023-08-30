@@ -65,20 +65,12 @@
             "type": "custom",
             "tokenizer": "jaso_index_tokenizer",
             "filter": [
-              "trim",
-              "whitespace_remove_filter",
-              "special_remove_filter",
               "suggest_filter"
             ]
           },
           "suggest_search_analyzer": {
             "type": "custom",
-            "tokenizer": "jaso_search_tokenizer",
-            "filter": [
-              "trim",
-              "whitespace_remove_filter",
-              "special_remove_filter"
-            ]
+            "tokenizer": "jaso_search_tokenizer"
           }
         }
       }
