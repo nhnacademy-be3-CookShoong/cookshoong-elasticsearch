@@ -11,6 +11,11 @@
             "pattern": " ",
             "replacement": ""
           },
+          "special_replace_filter": {
+            "type": "pattern_replace",
+            "pattern": "[^가-힣a-zA-Z0-9]",
+            "replacement": " "
+          },
           "special_remove_filter": {
             "type": "pattern_replace",
             "pattern": "[^가-힣a-zA-Z0-9]",
@@ -65,12 +70,16 @@
             "type": "custom",
             "tokenizer": "jaso_index_tokenizer",
             "filter": [
-              "suggest_filter"
+              "suggest_filter",
+              "special_replace_filter"
             ]
           },
           "suggest_search_analyzer": {
             "type": "custom",
-            "tokenizer": "jaso_search_tokenizer"
+            "tokenizer": "jaso_search_tokenizer",
+            "filter": [
+              "special_replace_filter"
+            ]
           }
         }
       }
