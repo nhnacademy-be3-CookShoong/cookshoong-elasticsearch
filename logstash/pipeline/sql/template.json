@@ -5,31 +5,78 @@
   "settings": {
     "index": {
       "analysis": {
+        "filter": {
+          "whitespace_remove_filter": {
+            "type": "pattern_replace",
+            "pattern": " ",
+            "replacement": ""
+          },
+          "special_replace_filter": {
+            "type": "pattern_replace",
+            "pattern": "[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]",
+            "replacement": " "
+          },
+          "special_remove_filter": {
+            "type": "pattern_replace",
+            "pattern": "[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]",
+            "replacement": ""
+          },
+          "my_synonym_filter": {
+            "type": "synonym",
+            "synonyms_path": "analysis/synonym.txt"
+          },
+          "suggest_filter": {
+            "type": "edge_ngram",
+            "min_gram": 1,
+            "max_gram": 100
+          }
+        },
         "tokenizer": {
           "my_nori_tokenizer": {
             "type": "nori_tokenizer",
             "decompound_mode": "mixed",
             "discard_punctuation": "false",
             "user_dictionary": "analysis/userdict.txt"
-          }
-        },
-        "filter": {
-          "stopwords":{
-            "type": "stop",
-            "stopwords": [" "]
           },
-          "my_synonym_filter": {
-            "type": "synonym",
-            "synonyms_path": "analysis/synonym.txt"
+          "jaso_search_tokenizer": {
+            "type": "jaso_tokenizer",
+            "mistype": true,
+            "chosung": false
+          },
+          "jaso_index_tokenizer": {
+            "type": "jaso_tokenizer",
+            "mistype": true,
+            "chosung": true
           }
         },
         "analyzer": {
           "my_nori_analyzer": {
             "type": "custom",
-            "filter": ["lowercase", "trim", "stopwords",
-              "my_synonym_filter", "nori_part_of_speech", "nori_readingform"],
-            "char_filter": ["html_strip"],
-            "tokenizer": "my_nori_tokenizer"
+            "tokenizer": "my_nori_tokenizer",
+            "filter": [
+              "lowercase",
+              "trim",
+              "whitespace_remove_filter",
+              "special_remove_filter",
+              "my_synonym_filter",
+              "nori_part_of_speech",
+              "nori_readingform"
+            ],
+            "char_filter": [
+              "html_strip"
+            ]
+          },
+          "suggest_index_analyzer": {
+            "type": "custom",
+            "tokenizer": "jaso_index_tokenizer",
+            "filter": [
+              "suggest_filter",
+              "special_replace_filter"
+            ]
+          },
+          "suggest_search_analyzer": {
+            "type": "custom",
+            "tokenizer": "jaso_search_tokenizer"
           }
         }
       }
@@ -54,28 +101,53 @@
       },
       "name": {
         "type": "text",
-        "copy_to": ["keywordText"]
-      },
-      "description": {
-        "type": "text",
-        "copy_to": ["keywordText"]
-      },
-      "menus": {
-        "type": "text",
-        "copy_to": ["keywordText"]
-      },
-      "place": {
-        "type": "text",
-        "copy_to": ["keywordText"]
+        "copy_to": [
+          "keywordText_nori", "keywordText_jaso_name"
+        ]
       },
       "categories": {
         "type": "text",
-        "copy_to": ["keywordText"]
+        "copy_to": [
+          "keywordText_nori", "keywordText_jaso_categories"
+        ]
       },
-      "keywordText": {
+      "place": {
+        "type": "text",
+        "copy_to": [
+          "keywordText_nori", "keywordText_jaso_place"
+        ]
+      },
+      "menus": {
+        "type": "text",
+        "copy_to": [
+          "keywordText_nori"
+        ]
+      },
+      "description": {
+        "type": "text",
+        "copy_to": [
+          "keywordText_nori"
+        ]
+      },
+      "keywordText_nori": {
         "type": "text",
         "analyzer": "my_nori_analyzer",
         "search_analyzer": "my_nori_analyzer"
+      },
+      "keywordText_jaso_name": {
+        "type": "text",
+        "analyzer": "suggest_index_analyzer",
+        "search_analyzer": "suggest_search_analyzer"
+      },
+      "keywordText_jaso_categories": {
+        "type": "text",
+        "analyzer": "suggest_index_analyzer",
+        "search_analyzer": "suggest_search_analyzer"
+      },
+      "keywordText_jaso_place": {
+        "type": "text",
+        "analyzer": "suggest_index_analyzer",
+        "search_analyzer": "suggest_search_analyzer"
       }
     }
   }
